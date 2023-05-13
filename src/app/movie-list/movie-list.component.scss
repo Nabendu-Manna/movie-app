@@ -1,0 +1,64 @@
+::ng-deep .mat-mdc-option {
+  align-items: center;
+  justify-content: center;
+  mat-pseudo-checkbox {
+    margin-right: 5px !important;
+  }
+  mat-icon {
+    margin-right: 0 !important;
+    font-size: 15px;
+    width: max-content;
+    height: max-content;
+  }
+}
+
+.filter {
+  .search {
+    grid-area: search;
+  }
+  .rating {
+    grid-area: rating;
+  }
+  .category {
+    grid-area: category;
+  }
+  display: grid;
+  // grid-template-columns: auto auto auto;
+  grid-template-areas: "search search search search rating category";
+  grid-gap: 10px;
+
+  border-radius: 10px;
+  background: #fff;
+  margin-bottom: 26px;
+  padding: 20px 20px 0px;
+  box-shadow: 0px 0px 10px 0px rgba(204, 204, 204, 0.2784313725);
+}
+
+.list {
+  .item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 7px;
+    padding: 25px 35px;
+    box-shadow: 0px 0px 10px 0px rgba(204, 204, 204, 0.2784313725);
+    .left {
+      display: flex;
+      flex-direction: column;
+      .title {
+        color: #253858;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+    .category {
+      color: #465061;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
+}

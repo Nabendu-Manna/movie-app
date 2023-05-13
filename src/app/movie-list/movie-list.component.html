@@ -1,0 +1,57 @@
+<div class="filter">
+    <mat-form-field appearance="outline" class="search" (input)="filter()">
+        <mat-label>Search</mat-label>
+        <input matInput type="search" placeholder="Enter Movie Name" [formControl]="searchKeyList">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="rating">
+        <mat-label>Rating</mat-label>
+        <mat-select [formControl]="selectedRatingList" multiple (selectionChange)="filter()">
+            <mat-select-trigger>
+                {{selectedRatingList.value?.[0] || ''}}
+                <span *ngIf="(selectedRatingList.value?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(selectedRatingList.value?.length || 0) - 1}} {{selectedRatingList.value?.length === 2 ? 'other'
+                    : 'others'}})
+                </span>
+            </mat-select-trigger>
+            <mat-option value="Any Rating">Any Rating</mat-option>
+            <mat-option *ngFor="let starItem of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" [value]="starItem + ' star'">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star"
+                    *ngFor="let i of leastOfStar(starItem)"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star_border"
+                    *ngFor="let i of leastOfStar(10 - starItem)"></mat-icon>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="category">
+        <mat-label>Category</mat-label>
+        <mat-select [formControl]="selectedCategoryList" multiple (selectionChange)="filter()">
+            <mat-select-trigger>
+                {{selectedCategoryList.value?.[0] || ''}}
+                <span *ngIf="(selectedCategoryList.value?.length || 0) > 1" class="example-additional-selection">
+                    (+{{(selectedCategoryList.value?.length || 0) - 1}} {{selectedCategoryList.value?.length === 2 ?
+                    'other' : 'others'}})
+                </span>
+            </mat-select-trigger>
+            <mat-option value="Any Category">Any Category</mat-option>
+            <mat-option *ngFor="let categoryItem of categoryList" [value]="categoryItem">
+                {{categoryItem}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+</div>
+
+<div class="list">
+    <div class="item" *ngFor="let movie of movieList">
+        <div class="left">
+            <span class="title">{{movie.title}}</span>
+            <div class="star">
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star" *ngFor="let item of leastOfStar(numberOfStar(movie.rating, 'fill'))"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star_half" *ngFor="let item of leastOfStar(numberOfStar(movie.rating, 'half'))"></mat-icon>
+                <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="star_border" *ngFor="let item of leastOfStar(numberOfStar(movie.rating, 'blank'))"></mat-icon>
+            </div>
+        </div>
+        <span class="right category">{{movie.category}}</span>
+    </div>
+</div>

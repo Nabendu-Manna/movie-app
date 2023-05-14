@@ -9,7 +9,8 @@ const routes: Routes = [
     path: '',
     redirectTo: 'movie-list',
     pathMatch: 'full'
-  }
+  },
+  { path: 'movie-list-new', loadChildren: () => import('./movie-list-new/movie-list-new.module').then(m => m.MovieListNewModule) }
 ];
 
 @NgModule({

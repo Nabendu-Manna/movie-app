@@ -303,6 +303,15 @@
 
 <div class="content">
 
+  <mat-button-toggle-group #group="matButtonToggleGroup" [formControl]="version" style="margin-bottom: 20px;">
+    <mat-button-toggle value="movie-list-new" aria-label="V 1" (change)="goToV1()">
+      Version 1
+    </mat-button-toggle>
+    <mat-button-toggle value="movie-list" aria-label="V 2" (change)="goToV2()">
+      Version 2
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+
   <router-outlet></router-outlet>
 
   <footer style="padding: 50px 0;">
